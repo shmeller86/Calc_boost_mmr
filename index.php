@@ -32,19 +32,19 @@ Class Calculate {
     private $data = array(
         array(
             'from' => 0,
-            'to' => 2499,
+            'to' => 2500,
             'price' => 1,
             'currency' => 'RUB'
         ),
         array(
             'from' => 2500,
-            'to' => 3499,
+            'to' => 3500,
             'price' => 3,
             'currency' => 'RUB'
         ),
         array(
             'from' => 3500,
-            'to' => 5499,
+            'to' => 5500,
             'price' => 5,
             'currency' => 'RUB'
         ),
@@ -75,14 +75,12 @@ Class Calculate {
                 if($b < $v['to']){
                     $this->tmp += ($b - $a) * $v['price'];
                     $this->log[] = ($b - $a) . " MMR по " . $v['price'] . " руб.\t\t Всего на " . (($b - $a) * $v['price']);
-                    break;
                 }
                 else {
                     $this->tmp += ($v['to'] - $a) * $v['price'];
                     $this->log[] = ($v['to'] - $a) . " MMR по " . $v['price'] . " руб.\t\t Всего на " . (($v['to'] - $a) * $v['price']);
                     if (!empty($this->data[$k+1]['from'])) $this->getTotalPrice($this->data[$k+1]['from'],$b);
                     else $this->log[] =  "Попытка получить расчет более ".$this->data[$k]['to'].' MMR';
-                    break;
                 }
             }
         }
@@ -97,7 +95,7 @@ Class Calculate {
 
 $calc = new Calculate();
 
-$cash =  $calc->getTotalPrice(3400, 5200);
+$cash =  $calc->getTotalPrice(1500, 5500);
 
 echo 'Итоговая сумма составила: ' . $cash . ' руб.' . PHP_EOL;
 echo $calc->getDetail();
